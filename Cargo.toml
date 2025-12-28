@@ -1,6 +1,8 @@
-[package]
-name = "mrkrabs"
-version = "0.1.0"
-edition = "2024"
+[workspace]
 
-[dependencies]
+members = [
+    "tictactoe",
+    # you will add other projects here later
+]
+
+resovler = "3"
