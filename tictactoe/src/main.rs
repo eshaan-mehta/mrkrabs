@@ -82,15 +82,15 @@ impl Board {
     }
 
     fn make_move(&mut self, row: usize, col: usize, player: BoardState) -> Result<(), &str> {
-        if row >= 3 || col >= 3 {
-            return Err("Invalid coordinates");
-        }
-
-        if self.grid[row][col] != BoardState::Blank {
+        let cell = self.grid.get_mut(row)
+                    .and_then(|r| r.get_mut(col))
+                    .ok_or("Invalid coordinates.")?;
+        
+        if *cell != BoardState::Blank {
             return Err("This square is already filled");
         }
         
-        self.grid[row][col] = player;
+        *cell = player;
         Ok(())
     }
 }   
